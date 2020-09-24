@@ -1,6 +1,8 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<stdexcept>
+#include<fstream>
 
 class Fighter {
 
@@ -20,7 +22,14 @@ public:
 	std::string getName() const { return name; }
 
 
+	
+
 	friend std::ostream& operator<<(std::ostream& os, const Fighter& fi);
+
+	static Fighter parseUnit(std::string fname);
+		
+
+	
 	
 };
 
