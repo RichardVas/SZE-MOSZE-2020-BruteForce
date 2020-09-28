@@ -23,9 +23,9 @@ Fighter Fighter::parseUnit(std::string fname)
 	std::ifstream file;
 
 
-	std::string name = "";
-	int hp = -1;
-	int dmg = -1;
+	std::string name;
+	int hp;
+	int dmg;
 
 
 	file.open(fname);
