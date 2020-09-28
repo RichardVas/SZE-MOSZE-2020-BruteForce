@@ -23,16 +23,14 @@ Fighter Fighter::parseUnit(std::string fname)
 	std::ifstream file;
 
 
-	std::string name;
-	int hp;
-	int dmg;
-
-
 	file.open(fname);
 	if (!file.good()) throw std::runtime_error("File cannot be opened!");
 
 	else {
 		int i = 0;
+		std::string name;
+		int hp;
+		int dmg;
 
 		std::string line;
 		while (std::getline(file, line))
@@ -62,7 +60,7 @@ Fighter Fighter::parseUnit(std::string fname)
 			}
 		}
 		file.close();
-
+		return Fighter(name, hp, dmg);
 	}
-	return Fighter(name, hp, dmg);
+	
 }
