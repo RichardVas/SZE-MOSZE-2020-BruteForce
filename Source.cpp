@@ -1,4 +1,5 @@
 #include"Fighter.h"
+#include"Jsonparser.h"
 
 void duel(Fighter attacker, Fighter defender) {
 
@@ -7,13 +8,12 @@ void duel(Fighter attacker, Fighter defender) {
 	while (attacker.getHP() != 0 && defender.getHP() != 0)
 	{
 		if (can_attack) {
-			
+
 			attacker.deal_dmg(defender);
 			can_attack = false;
 		}
 		else
 		{
-			
 			attacker.take_dmg(defender);
 			can_attack = true;
 		}
@@ -33,9 +33,17 @@ int main(int argc, char* argv[])
 {
 
 	try {
-		Fighter u1(Fighter::parseUnit(argv[1]));
-		Fighter u2(Fighter::parseUnit(argv[2]));
+		std::map<std::string, std::string>map1 = Jsonparser::parseJson(argv[1]);
+
+		std::map<std::string, std::string>map2 = Jsonparser::parseJson(argv[2]);
+
+		Fighter u1(map1["name"], std::stoi (map1["hp"]),std::stof( map1["dmg"]));
+		Fighter u2(map2["name"], std::stoi (map2["hp"]),std::stof( map2["dmg"]));
+
+
+
 		duel(u1, u2);
+
 
 	}
 	catch (const std::exception &e)
@@ -43,7 +51,7 @@ int main(int argc, char* argv[])
 		std::cout << e.what() << std::endl;
 		return 1;
 	}
+		
 
 	return 0;
 }
-
