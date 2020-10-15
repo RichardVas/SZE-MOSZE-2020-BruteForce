@@ -4,17 +4,21 @@ void duel(Fighter attacker, Fighter defender) {
 
 	bool can_attack = true;
 
+
 	while (attacker.getHP() != 0 && defender.getHP() != 0)
 	{
 		if (can_attack) {
-			
-			attacker.deal_dmg(defender);
+
+			attacker.deal_dmg(defender); 
 			can_attack = false;
+
+			
 		}
 		else
 		{
-			
+
 			attacker.take_dmg(defender);
+
 			can_attack = true;
 		}
 	}
@@ -26,6 +30,7 @@ void duel(Fighter attacker, Fighter defender) {
 	{
 		std::cout << defender.getName() << " wins. " << "Remaining HP: " << defender.getHP() << std::endl;
 	}
+
 }
 
 
@@ -44,6 +49,6 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
+
 	return 0;
 }
-
