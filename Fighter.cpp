@@ -11,7 +11,7 @@ void Fighter::deal_dmg(Fighter &enemy) {
 	enemy.take_dmg(*this);
 }
 
-void Fighter::duel(Fighter *enemy)
+Fighter& Fighter::duel(Fighter *enemy)
 {
 	bool can_attack = true;
 
@@ -40,16 +40,19 @@ void Fighter::duel(Fighter *enemy)
 		}
 	}
 	if (this->getHP() > enemy->getHP())
-	{
-		std::cout << this->getName() << " wins. " << "Remaining HP: " << this->getHP() << std::endl;
+	{		
+		return *this;
 	}
 	else
 	{
-		std::cout << enemy->getName() << " wins. " << "Remaining HP: " << enemy->getHP() << std::endl;
+		return *enemy;
 	}
 
 
 }
+
+
+
 
 std::ostream& operator<<(std::ostream& os, const Fighter& fi)
 {
