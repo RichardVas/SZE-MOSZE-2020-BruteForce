@@ -4,6 +4,7 @@ on:
   push:
     branches:	
       - attackspeed
+      - gh-pages
 
 jobs:
   doxygen:
