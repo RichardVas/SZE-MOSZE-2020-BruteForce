@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['duel',['duel',['../class_fighter.html#a8e6f2408e76a765260773973f430a632',1,'Fighter']]]
+  ['duel',['duel',['../class_fighter.html#a28aaa6f8042b69a26955c2991b40e850',1,'Fighter']]]
 ];
