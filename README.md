@@ -5,3 +5,6 @@ A BruteForce csapatként egy RPG játék megvalósításán dolgozunk. Jelenlegi
 Task#2 keretében bővítettük programunkat a parseUnit metódussal, mely képes Json fájlokat feldolgozni. A feldolgozás után a workflownk és a test.sh keretein belűl összehasonlítjuk a tényleges kimenetet a várt értékkel.
 
 Task#3 Játékunk harcosai kibővülnek egy új tulajdonsággal az "attackcooldown"al. Ez az érték azt szablya meg, hogy milyen gyorsan képesek újra lesúlytani ellenfelük és vica- versa. 
+
+Dokumentáció
+https://teaching-projects.github.io/SZE-MOSZE-2020-BruteForce/
