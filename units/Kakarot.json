@@ -2,4 +2,5 @@
   "name" : "Kakarot",
   "hp" : 300,
   "dmg" : 90,
+  "attackcooldown" : 1.5,
 }

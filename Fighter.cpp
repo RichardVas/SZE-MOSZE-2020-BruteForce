@@ -11,6 +11,49 @@ void Fighter::deal_dmg(Fighter &enemy) {
 	enemy.take_dmg(*this);
 }
 
+Fighter& Fighter::duel(Fighter *enemy)
+{
+	bool can_attack = true;
+
+	double aCD = this->getCD();
+	double bCD = enemy->getCD();
+
+	double rest_a=0;
+	double rest_b=0;
+
+	this->deal_dmg(*enemy);
+	this->take_dmg(*enemy);
+
+	while (this->getHP() != 0 && enemy->getHP() != 0)
+	{
+		if (aCD + rest_a < bCD + rest_b) {
+			rest_a += aCD;
+			this->deal_dmg(*enemy);
+		}
+		else if (aCD + rest_a > bCD + rest_b) {
+			rest_b += bCD;
+			this->take_dmg(*enemy);
+		}
+		else { 
+			rest_a += aCD;
+			this->deal_dmg(*enemy);
+		}
+	}
+	if (this->getHP() > enemy->getHP())
+	{		
+		return *this;
+	}
+	else
+	{
+		return *enemy;
+	}
+
+
+}
+
+
+
+
 std::ostream& operator<<(std::ostream& os, const Fighter& fi)
 {
 	os << fi.getName() << ": HP: " << fi.getHP() << "," << " DMG: " << fi.getDMG() << std::endl;
@@ -31,6 +74,7 @@ Fighter Fighter::parseUnit(std::string fname)
 		std::string name;
 		int hp;
 		int dmg;
+		double attackcooldown;
 
 		std::string line;
 		while (std::getline(file, line))
@@ -55,12 +99,14 @@ Fighter Fighter::parseUnit(std::string fname)
 						hp = std::stoi(str2);
 					if (i == 2)
 						dmg = std::stoi(str2);
+					if (i == 3)
+						attackcooldown = std::stod(str2);
 				}
 				i++;
 			}
 		}
 		file.close();
-		return Fighter(name, hp, dmg);
+		return Fighter(name, hp, dmg,attackcooldown);
 	}
-	
+
 }
