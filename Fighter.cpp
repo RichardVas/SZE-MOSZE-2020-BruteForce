@@ -26,10 +26,10 @@ void Fighter::deal_dmg(Fighter &enemy) {
 void Fighter::levelUP()
 {
 	MaxHP *= 1.1;
-	MaxHP=round(MaxHP);
+	MaxHP=std::round(MaxHP);
 	HP = MaxHP;
 	DMG *= 1.1;
-	DMG=round(DMG);
+	DMG=std::round(DMG);
 }
 
 std::ostream& operator<<(std::ostream& os,  Fighter& fi)
@@ -85,3 +85,4 @@ Fighter Fighter::parseUnit(std::string fname)
 	}
 	
 }
+
