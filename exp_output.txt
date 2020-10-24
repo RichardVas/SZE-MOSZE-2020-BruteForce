@@ -1,0 +1,6 @@
+Sally wins. Remaining HP: 50
+Kakarot wins. Remaining HP: 56
+Sally wins. Remaining HP: 40
+Kakarot wins. Remaining HP: 30
+Kakarot wins. Remaining HP: 56
+Kakarot wins. Remaining HP: 30
