@@ -30,9 +30,9 @@ void Fighter::levelUP()
 	HP = MaxHP;
 	DMG *= 1.1;
 	DMG=std::round(DMG);
+	attackcooldown *= 0.9;
 }
 
-std::ostream& operator<<(std::ostream& os,  Fighter& fi)
 Fighter& Fighter::duel(Fighter *enemy)
 {
 	bool can_attack = true;
@@ -40,8 +40,8 @@ Fighter& Fighter::duel(Fighter *enemy)
 	double aCD = this->getCD();
 	double bCD = enemy->getCD();
 
-	double rest_a=0;
-	double rest_b=0;
+	double rest_a = 0;
+	double rest_b = 0;
 
 	this->deal_dmg(*enemy);
 	this->take_dmg(*enemy);
@@ -56,13 +56,13 @@ Fighter& Fighter::duel(Fighter *enemy)
 			rest_b += bCD;
 			this->take_dmg(*enemy);
 		}
-		else { 
+		else {
 			rest_a += aCD;
 			this->deal_dmg(*enemy);
 		}
 	}
 	if (this->getHP() > enemy->getHP())
-	{		
+	{
 		return *this;
 	}
 	else
@@ -70,13 +70,9 @@ Fighter& Fighter::duel(Fighter *enemy)
 		return *enemy;
 	}
 
-
 }
 
-
-
-
-std::ostream& operator<<(std::ostream& os, const Fighter& fi)
+std::ostream& operator<<(std::ostream& os,  Fighter& fi)
 {
 	os << fi.getName() << ": HP: " << fi.getHP() << "," << " DMG: " << fi.getDMG() << std::endl;
 	return os;
@@ -86,6 +82,7 @@ std::ostream& operator<<(std::ostream& os, const Fighter& fi)
 Fighter Fighter::parseUnit(std::string fname)
 {
 	std::ifstream file;
+
 
 	file.open(fname);
 	if (!file.good()) throw std::runtime_error("File cannot be opened!");
@@ -127,7 +124,7 @@ Fighter Fighter::parseUnit(std::string fname)
 			}
 		}
 		file.close();
-		return Fighter(name, hp, dmg,attackcooldown);
+		return Fighter(name, hp, dmg, attackcooldown);
 	}
 
 }
