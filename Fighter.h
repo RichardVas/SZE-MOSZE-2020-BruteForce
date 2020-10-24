@@ -4,16 +4,18 @@
 #include<stdexcept>
 #include<fstream>
 #include<cmath>
+
 class Fighter {
+
 	double HP
 		/**
 		 * Characters health points.
 		 */;
-	const double DMG
+	double DMG
 		/**
 		 * Characters damage.
 		 */;
-	const double attackcooldown
+	double attackcooldown
 		/**
 		 * Characters attack speed.
 		 */;
@@ -30,6 +32,7 @@ class Fighter {
 		 * Method for character dealing damage.
 		 */;
 
+
 	double MaxHP;
 
 	int level = 1;
@@ -38,28 +41,27 @@ class Fighter {
 
 	void levelUP();
 
-	public:
-	/**
-	 * A class that contains the attributes of fighters.
-	 * They have HP, Damage, attackcooldown which they get from input, and their own name.
-	 */
 	
-	Fighter(const std::string &iname, double ihp, int idmg) : name(iname), HP(ihp), DMG(idmg),MaxHP(ihp), attackcooldown(acd) {}
+
+public:
+	
+	Fighter(const std::string &iname, double ihp, int idmg, double acd) : name(iname), HP(ihp), DMG(idmg),MaxHP(ihp), attackcooldown(acd) {}
 	~Fighter() {}
-};
+
+
 	double getHP() const { return HP; }
 	double getDMG() const { return DMG; }
+	double getCD() const { return attackcooldown; }
 	int getLVL() const { return level; }
 	int getXP() const { return exp; }
 
-	double getCD() const { return attackcooldown; }
 	std::string getName() const { return name; }
 
 	Fighter& duel(Fighter *enemy)/**
 		 * Method for 2 characters fighting.
 		 */;
 
-		
+
 
 	friend std::ostream& operator<<(std::ostream& os, const Fighter& fi)
 		/**
@@ -73,5 +75,5 @@ class Fighter {
 
 
 
-
 };
+
