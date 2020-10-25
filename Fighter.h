@@ -4,13 +4,10 @@
 #include<stdexcept>
 #include<fstream>
 
-
 #include<map>
-#include<any>
 #include<algorithm>
-#include <string>
-#include <stack>
-#include<variant>
+#include<string>
+
 
 class Fighter {
 
@@ -30,13 +27,6 @@ public:
 	std::string getName() const { return name; }
 
 
-
-
 	friend std::ostream& operator<<(std::ostream& os, const Fighter& fi);
 
-	static Fighter parseUnit(std::string fname);
-
-
-
-
-};
+}; 
