@@ -13,5 +13,5 @@ jobs:
         run: chmod u+r+x test.sh
       - name: Run test
         run: ./test.sh
-      - name: Diff
+      - name: Diffy
         run: diff --strip-trailing-cr output.txt exp_output.txt
