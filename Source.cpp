@@ -33,18 +33,16 @@ int main(int argc, char* argv[])
 {
 
 	try {
-		std::map<std::string, std::string>map1 = Jsonparser::parseJson(argv[1]);
 
+		
+		std::map<std::string, std::string>map1 = Jsonparser::parseJson(argv[1]);
 		std::map<std::string, std::string>map2 = Jsonparser::parseJson(argv[2]);
+
+
 
 		Fighter u1(map1["name"], std::stoi (map1["hp"]),std::stof( map1["dmg"]));
 		Fighter u2(map2["name"], std::stoi (map2["hp"]),std::stof( map2["dmg"]));
-
-
-
 		duel(u1, u2);
-
-
 	}
 	catch (const std::exception &e)
 	{
