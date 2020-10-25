@@ -1,19 +1,20 @@
 #include "Jsonparser.h"
 #include<sstream>
 #include<string>
-std::string Jsonparser:: determine_type(std::string str)
+
+Jsonparser::type Jsonparser::determine_type(std::string str)
 {
-	
 	if (str.find('"') != std::string::npos)
-		return "string";
+		return String;
 	else
 	{
 		if (str.find('.') != std::string::npos)
-			return "double";
+			return Double;
 		else
-			return "int";
+			return Integer;
 	}
 }
+
 std::map <std::string, std::string> Jsonparser::getmap(std::string str)
 {
 
@@ -24,48 +25,62 @@ std::map <std::string, std::string> Jsonparser::getmap(std::string str)
 
 		while (std::getline(stream, line))
 		{
-			std::string str1 = "";
-			std::string str2 = "";
-			std::string str0 = "";
-			std::string str00 = "";
+			std::string rightside = "";
+			std::string value = "";
+			std::string leftside = "";
+			std::string key = "";
 
 			bool whiteSpacesOnly = std::all_of(line.begin(), line.end(), isspace);
 
 			if (line.find('{') == std::string::npos && line.find('}') == std::string::npos && !whiteSpacesOnly)
-
 			{
-				/*determine key*/
-				str0 = line.substr(0, line.find(':') - 1);
+				/*check for :*/
 
-				str00 = str0.substr(str0.find('"') + 1, (str0.rfind('"') - str0.find('"')) - 1);
-	//			
-				std::string type = determine_type(line.substr(line.find(':')));
-
-				if (type == "string")
-				{
-					str1 = line.substr(line.find(':'));
-					str2 = str1.substr(str1.find('"') + 1, (str1.rfind('"') - str1.find('"')) - 1);
-					m[str00] = str2;
-				}
+				if (line.find(':') == std::string::npos)
+					throw std::runtime_error("Invalid Json format");
 				else
 				{
-					str1 = line.substr(line.find(':'));
-					str2 = str1.substr(str1.find(':') + 1, str1.rfind(',') - 1);
-					if (type == "int") {
-						m[str00] = str2;
+					leftside = line.substr(0, line.find(':') - 1);
+					/*determine key*/
+					unsigned int str_start = leftside.find('"');
+
+					key = leftside.substr(str_start + 1, (leftside.rfind('"') - str_start) - 1);
+
+					Jsonparser::type target_type = determine_type(line.substr(line.find(':')));
+
+					if (target_type == String)
+					{
+						rightside = line.substr(line.find(':'));
+						unsigned int val_start = rightside.find('"');
+						value = rightside.substr(val_start + 1, (rightside.rfind('"') - val_start) - 1);
+						m[key] = value;
 					}
-					else {
-						if (type == "double")
-						{
-							m[str00] = str2;
+					else
+					{
+						rightside = line.substr(line.find(':'));
+
+						value = rightside.substr(rightside.find(':') + 1);
+						/*remove trash*/
+						value.erase(std::remove_if(value.begin(), value.end(), isspace), value.end());
+						if (value.back() == ',')
+							value.pop_back();
+						
+						if (target_type == Integer) {
+							m[key] = value;
+						}
+						else {
+							if (target_type == Double)
+							{
+								m[key] = value;
+							}
 						}
 					}
 				}
-
 			}
 		}
 			return m;
 }
+
 std::map <std::string, std::string> Jsonparser::parseJson(std::string fname)
 {
 	std::ifstream file;
@@ -73,53 +88,17 @@ std::map <std::string, std::string> Jsonparser::parseJson(std::string fname)
 	if (!file.good()) throw std::runtime_error("File cannot be opened!");
 
 	else {
-
-		std::map<std::string, std::string>m; 
-		std::string line;
-		while (std::getline(file, line))
-		{
-			std::string str1 = "";
-			std::string str2 = "";
-			std::string str0 = "";
-			std::string str00 = "";
-
-			bool whiteSpacesOnly = std::all_of(line.begin(), line.end(), isspace);
-
-			if (line.find('{') == std::string::npos && line.find('}') == std::string::npos && !whiteSpacesOnly)
-
-			{
-				/*determine key*/
-				str0 = line.substr(0, line.find(':') - 1);
-
-				str00 = str0.substr(str0.find('"') + 1, (str0.rfind('"') - str0.find('"')) - 1);
-//				
-				std::string type = determine_type(line.substr(line.find(':')));
-
-				if (type == "string")
-				{
-					str1 = line.substr(line.find(':'));
-					str2 = str1.substr(str1.find('"') + 1, (str1.rfind('"') - str1.find('"')) - 1);
-					m[str00] = str2;
-				}
-				else
-				{
-					str1 = line.substr(line.find(':'));
-					str2 = str1.substr(str1.find(':') + 1, str1.rfind(',') - 1);
-					if (type == "int") {
-						m[str00] = str2;
-					}
-					else {
-						if (type == "double")
-						{
-							m[str00] = str2;
-						}
-					}
-				}
-
-			}
+		std::map<std::string, std::string>map; 
+		std::string line, str="";
+		while (std::getline(file, line)) {
+			str += line;
+			str += "\n";
 		}
+
+		map = getmap(str);
+
 		file.close();
-		return m;
+		return map;
 
 	}
 
@@ -129,7 +108,7 @@ std::map<std::string, std::string> Jsonparser::parseJson(std::istream &input) {
 	while (std::getline(input, line))
 	{
 		str += line;
+		str += "\n";
 	}
 	return Jsonparser::getmap(str);
 }
-
