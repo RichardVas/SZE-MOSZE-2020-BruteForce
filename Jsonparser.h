@@ -3,7 +3,6 @@
 
 class Jsonparser
 {
-	
 	enum type { Integer, Double, String };
 	static type determine_type(std::string str);
 
