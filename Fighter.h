@@ -8,25 +8,71 @@
 #include<algorithm>
 #include<string>
 
+#include<cmath>
 
 class Fighter {
 
-	int HP;
-	const int DMG;
-	const std::string name;
+		double HP
+			/**
+			 * Characters health points.
+			 */;
+		double DMG
+			/**
+			 * Characters damage.
+			 */;
+		double attackcooldown
+			/**
+			 * Characters attack speed.
+			 */;
+		const std::string name
+			/**
+			 * Characters name.
+			 */;
+		void take_dmg(Fighter &enemy)
+			/**
+			 * Method for character taking damage.
+			 */;
+		void deal_dmg(Fighter &enemy)
+			/**
+			 * Method for character dealing damage.
+			 */;
 
-public:
 
-	Fighter(std::string iname, int ihp, int idmg) : name(iname), HP(ihp), DMG(idmg) {}
-	~Fighter() {}
-	void take_dmg(Fighter &enemy);
-	void deal_dmg(Fighter &enemy);
+		double MaxHP;
 
-	int getHP() const { return HP; }
-	int getDMG() const { return DMG; }
-	std::string getName() const { return name; }
+		int level = 1;
+		int exp = 0;
 
 
-	friend std::ostream& operator<<(std::ostream& os, const Fighter& fi);
+		void levelUP();
 
-}; 
+
+
+	public:
+
+		Fighter(const std::string &iname, double ihp, int idmg, double acd) : name(iname), HP(ihp), DMG(idmg), MaxHP(ihp), attackcooldown(acd) {}
+		~Fighter() {}
+
+
+		double getHP() const { return HP; }
+		double getDMG() const { return DMG; }
+		double getCD() const { return attackcooldown; }
+		int getLVL() const { return level; }
+		int getXP() const { return exp; }
+
+		std::string getName() const { return name; }
+
+		Fighter& duel(Fighter *enemy)/**
+			 * Method for 2 characters fighting.
+			 */;
+
+
+
+		friend std::ostream& operator<<(std::ostream& os, const Fighter& fi)
+			/**
+			 * Operator overload to make the class printable.
+			 */;
+
+
+};
+

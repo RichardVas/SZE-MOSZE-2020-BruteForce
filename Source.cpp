@@ -1,32 +1,6 @@
 #include"Fighter.h"
 #include"Jsonparser.h"
 
-void duel(Fighter attacker, Fighter defender) {
-
-	bool can_attack = true;
-
-	while (attacker.getHP() != 0 && defender.getHP() != 0)
-	{
-		if (can_attack) {
-
-			attacker.deal_dmg(defender);
-			can_attack = false;
-		}
-		else
-		{
-			attacker.take_dmg(defender);
-			can_attack = true;
-		}
-	}
-	if (attacker.getHP() > defender.getHP())
-	{
-		std::cout << attacker.getName() << " wins. " << "Remaining HP: " << attacker.getHP() << std::endl;
-	}
-	else
-	{
-		std::cout << defender.getName() << " wins. " << "Remaining HP: " << defender.getHP() << std::endl;
-	}
-}
 
 
 int main(int argc, char* argv[])
@@ -39,10 +13,10 @@ int main(int argc, char* argv[])
 		std::map<std::string, std::string>map2 = Jsonparser::parseJson(argv[2]);
 
 
-
-		Fighter u1(map1["name"], std::stoi (map1["hp"]),std::stof( map1["dmg"]));
-		Fighter u2(map2["name"], std::stoi (map2["hp"]),std::stof( map2["dmg"]));
-		duel(u1, u2);
+		Fighter u1(map1["name"], std::stoi(map1["hp"]),std::stof( map1["dmg"]),std::stof(map1["attackcooldown"]));
+		Fighter u2(map2["name"], std::stoi(map2["hp"]), std::stof(map2["dmg"]), std::stof(map2["attackcooldown"]));
+		Fighter *outcome = &u1.duel(&u2);
+		std::cout << outcome->getName() << " wins. " << "Remaining HP: " << outcome->getHP() << std::endl;
 	}
 	catch (const std::exception &e)
 	{
