@@ -12,7 +12,7 @@ TEST(JsonparserTest, Test_parseJson_ifstream_good)
 	exp_output.insert(std::pair<std::string, std::string>("name", "Maple"));
 	exp_output.insert(std::pair<std::string, std::string>("hp", "150"));
 	exp_output.insert(std::pair<std::string, std::string>("dmg", "10"));
-
+	exp_output.insert(std::pair<std::string, std::string>("attackcooldown", "3.0"));
 
     std::ifstream inputFile(inputFilename);
 
@@ -31,6 +31,7 @@ TEST(JsonparserTest, Test_parseJson_fname_good)
 	exp_output.insert(std::pair<std::string, std::string>("name", "Maple"));
 	exp_output.insert(std::pair<std::string, std::string>("hp", "150"));
 	exp_output.insert(std::pair<std::string, std::string>("dmg", "10"));
+	exp_output.insert(std::pair<std::string, std::string>("attackcooldown", "3.0"));
 	
 	std::map<std::string, std::string> test_output = Jsonparser::parseJson(inputFilename);
 	
