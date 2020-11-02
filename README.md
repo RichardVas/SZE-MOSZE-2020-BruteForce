@@ -4,6 +4,8 @@ A BruteForce csapatként egy RPG játék megvalósításán dolgozunk. Jelenlegi
 
 Task#2 keretében bővítettük programunkat a parseUnit metódussal, mely képes Json fájlokat feldolgozni. A feldolgozás után a workflownk és a test.sh keretein belűl összehasonlítjuk a tényleges kimenetet a várt értékkel.
 
+Task#3 keretében a feladatunkat kibővítettük egy új osztállyal. A Jsonparser egy "univerzális" json fájl olvasó osztály, mely lényegesen rugalmasabb előddjéhez mérve. Képes ignorálni a fölösleges whitespaceket és nem tartja magát az inputokot sorrendjéhez.
+
 Task#3 Implementáltuk a szintlépés működését. Összecsapások során a karakterek tapasztalati pontot szereznek ,minden egyes csapás után, ha 100at elérnek akkor szintet lépnek.
 Szintlépéskor a maximális életerő és az eredjük 10%ot nő és visszakapják maximális életerejüket.
 
