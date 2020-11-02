@@ -1,4 +1,4 @@
-SHELL=/bin/bash
+SHELL=:/bin/bash
 
 OBJS = Jsonparser.o Fighter.o Source.o
 OUT = a.out
