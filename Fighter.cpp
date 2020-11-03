@@ -1,6 +1,9 @@
 #include "Fighter.h"
 
 void Fighter::take_dmg(Fighter& enemy) {
+	/**
+	*Method for character taking damage from enemy
+	*/
 	HP -= enemy.getDMG();
 	if (HP < 0)
 		HP = 0;
@@ -20,6 +23,9 @@ void Fighter::take_dmg(Fighter& enemy) {
 }
 
 void Fighter::deal_dmg(Fighter &enemy) {
+	/**
+	*Method for character dealing damage to enemy
+	*/
 	enemy.take_dmg(*this);
 }
 
@@ -38,6 +44,9 @@ void Fighter::levelUP()
 
 Fighter& Fighter::duel(Fighter *enemy)
 {
+	/**
+	*Method for 2 characters fighting each other
+	*/
 	bool can_attack = true;
 
 	double aCD = this->getCD();
