@@ -73,8 +73,9 @@ TEST(JsonparserTest, unit_test_func)
 	
 	std::map<std::string, std::string> test = Jsonparser::getmap(str);
 	
-	ASSERT_TRUE(maple == test);
+	ASSERT_EQ(maple,test);
 }
+
 TEST(JsonparserTest, getmap_whitespace)
 {
 	std::string str1 = "{\n"
