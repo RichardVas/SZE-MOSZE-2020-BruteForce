@@ -25,6 +25,9 @@ void Fighter::deal_dmg(Fighter &enemy) {
 
 void Fighter::levelUP()
 {
+	/**
+	*Method for character leveling up
+	*/
 	MaxHP *= 1.1;
 	MaxHP = std::round(MaxHP);
 	HP = MaxHP;
