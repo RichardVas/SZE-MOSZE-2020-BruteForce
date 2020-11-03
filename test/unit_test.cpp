@@ -60,13 +60,14 @@ TEST(JsonparserTest, unit_test)
 	std::map<std::string, std::string> sally = Jsonparser::parseJson("units/Sally.json");
 	ASSERT_FALSE(maple == sally);
 }
-TEST(JsonparserTest, unit_test1)
+TEST(JsonparserTest, unit_test_func)
 {
 	std::string str = "{\n"
 "     \"name\" : \"Maple\",\n"
 "     \"hp\" : 150,   \n"
 "     \"dmg\" :  10  , \n"
-"}";
+"     \"attackcooldown\" : 3.0,\n"
+"}"
 	
 	std::map<std::string, std::string> maple = Jsonparser::parseJson("units/Maple.json");
 	
