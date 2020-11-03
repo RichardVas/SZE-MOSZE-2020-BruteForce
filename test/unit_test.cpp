@@ -61,6 +61,69 @@ TEST(JsonparserTest, Test_getmap)
 	ASSERT_EQ(Jsonparser::getmap(str), Jsonparser::getmap(str_space));
 }
 
+TEST(JsonparserTest, unit_test)
+{
+	
+	std::map<std::string, std::string> maple = Jsonparser::parseJson("units/Maple.json");
+	std::map<std::string, std::string> sally = Jsonparser::parseJson("units/Sally.json");
+	ASSERT_FALSE(maple == sally);
+}
+TEST(JsonparserTest, unit_test1)
+{
+	std::string str = "{\n"
+"     \"name\" : \"Maple\",\n"
+"     \"hp\" : 150,   \n"
+"     \"dmg\" :  10  , \n"
+"}";
+	
+	std::map<std::string, std::string> maple = Jsonparser::parseJson("units/Maple.json");
+	
+	std::map<std::string, std::string> test = Jsonparser::getmap(str);
+	
+	ASSERT_TRUE(maple == test);
+}
+TEST(JsonparserTest, getmap_whitespace)
+{
+	std::string str1 = "{\n"
+"     \"name\" : \"Maple\",\n"
+"     \"hp\" : 150,   \n"
+"     \"dmg\" :  10  , \n"
+"}";
+	std::string str2 = "{\n"
+"     \"name\" :                                  \"Maple\",\n"
+"            \"hp\"  :  150,   \n"
+"     \"dmg       \" :  10  ,          \n"
+"}";
+	
+	
+	std::map<std::string, std::string> map1 = Jsonparser::getmap(str1);
+	
+	std::map<std::string, std::string> map2 = Jsonparser::getmap(str2);
+	
+	
+	ASSERT_EQ(map1["name"],map2["name"]);
+}
+TEST(JsonparserTest, unit_test_ORDER)
+{
+	std::string str1 = "{\n"
+"     \"name\" : \"Maple\",\n"
+"     \"hp\" : 150,   \n"
+"     \"dmg\" :  10  , \n"
+"}";
+	std::string str2 = "{\n"
+"     \"dmg\" : 10,\n"
+"     \"hp\" : 150,   \n"
+"     \"name\" :  \"Maple\"  , \n"
+"}";
+	
+	std::map<std::string, std::string> map1 = Jsonparser::getmap(str1);
+	
+	std::map<std::string, std::string> map2 = Jsonparser::getmap(str2);
+	
+	
+	ASSERT_EQ(map1["name"],map2["name"]);
+}
+
 
 int main(int argc, char** argv)
 {
