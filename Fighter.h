@@ -44,7 +44,9 @@ class Fighter {
 		int exp = 0;
 
 
-		void levelUP();
+		void levelUP() /**
+		*Method for character leveling up.
+		*/;
 
 
 
