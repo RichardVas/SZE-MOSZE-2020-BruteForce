@@ -52,14 +52,6 @@ TEST(JsonparserTest, Test_getmap_bad)
 	ASSERT_THROW(Jsonparser::getmap(str), std::runtime_error);
 }
 
-TEST(JsonparserTest, Test_getmap)
-{
-	std::string str ="{\n"name" : "Maple",\n"hp" : 150,\n"dmg" :  10  , \n"attackcooldown" : 3.0,}";
-	std::string str_space ="{\n"name  "    :  "   Maple  ",\n"  hp" :       150,\n"dmg"     :  10    , \n"   attackcooldown" : 3.0,}";
-
-
-	ASSERT_EQ(Jsonparser::getmap(str), Jsonparser::getmap(str_space));
-}
 
 TEST(JsonparserTest, unit_test)
 {
