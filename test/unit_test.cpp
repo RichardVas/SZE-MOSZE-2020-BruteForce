@@ -58,7 +58,7 @@ TEST(JsonparserTest, Test_getmap)
 	std::string str_space ="{\n"name  "    :  "   Maple  ",\n"  hp" :       150,\n"dmg"     :  10    , \n"   attackcooldown" : 3.0,}";
 
 
-	ASSERT_EQ(Jsonparser::getmap(str), Jsonparser::getmap(str_space);
+	ASSERT_EQ(Jsonparser::getmap(str), Jsonparser::getmap(str_space));
 }
 
 
