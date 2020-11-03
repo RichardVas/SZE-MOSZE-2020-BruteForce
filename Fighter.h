@@ -11,7 +11,9 @@
 #include<cmath>
 
 class Fighter {
-
+/**
+*Class that handles everything that happens regarding characters.
+*/
 		double HP
 			/**
 			 * Characters health points.
