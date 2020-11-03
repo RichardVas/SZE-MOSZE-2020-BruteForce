@@ -52,6 +52,26 @@ TEST(JsonparserTest, Test_getmap_bad)
 	ASSERT_THROW(Jsonparser::getmap(str), std::runtime_error);
 }
 
+TEST(JsonparserTest, Test_getmap)
+{
+	std::string str ="{
+     "name" : "Maple",
+     "hp" : 150,   
+     "dmg" :  10  , 
+     "attackcooldown" : 3.0,
+}";
+	std::string str_space ="{
+     "name" :        "Maple   ",
+        "hp"   :     150,   
+     "dmg" :                                  10  , 
+     " attackcooldown  "     :   3.0,
+}";
+
+
+	ASSERT_EQ(Jsonparser::getmap(str), Jsonparser::getmap(str_space);
+}
+
+
 int main(int argc, char** argv)
 {
 	::testing::InitGoogleTest(&argc, argv);
