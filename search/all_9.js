@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7efighter',['~Fighter',['../class_fighter.html#a7c7f2ffa4724887e564af51a6154b703',1,'Fighter']]]
+  ['sze_2dmosze_2d2020_2dbruteforce',['SZE-MOSZE-2020-BruteForce',['../autotoc_md0.html',1,'']]],
+  ['source_2ecpp',['Source.cpp',['../_source_8cpp.html',1,'']]]
 ];
